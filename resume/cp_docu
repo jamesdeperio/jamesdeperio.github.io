@@ -1,0 +1,42 @@
+* appmodule
+  - presentation tier.
+  - code related to user's screen.
+* global
+  - shared classes like models, global module, utility, base class, widgets, helper,scope.
+* integration
+  - services, broadcast receiver, dao, repository.
+
+Basic setup
+- use codepocketbuilder > setup
+- this will create this files and folders
+
+*appmodule
+*global
+  -app
+      +MainApplication.class
+      +MainComponent.class
+  -module
+      +appconfig
+          #ApplicationBindingModule.class
+          #ActivityBindingModule.class
+          #FragmentBindingModule.class
+          #ServiceBindingModule.class
+          #BroadcastReceiverBindingModule.class
+  -model
+  -util
+  -base
+      +DIBaseActivity.class
+      +DIBaseFragment.class
+      +DIBaseSwipeBackFragment.class
+  -scope
+      +ApplicationScope.annotation
+      +ActivityScope.annotation
+      +FragmentScope.annotation
+      +ServiceScope.annotation
+      +BroadcastReceiverScope.annotation
+*integration
+  -repository
+      +NetworkManager.class
+  -dao
+  -receiver
+  -service
