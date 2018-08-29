@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RetrofitKit Documentation</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900" rel="stylesheet">
+  <link rel="stylesheet" href="scribbler-global.css">
+  <link rel="stylesheet" href="scribbler-doc.css">
+  <link rel="author" href="humans.txt">
+</head>
+<body>
+  <div class="doc__bg"></div>
+  <nav class="header">
+    <h1 class="logo">Retrofit<span class="logo__thin">Kit</span></h1>
+    <ul class="menu">
+      <div class="menu__item toggle"><span></span></div>
+      <li class="menu__item"><a href="https://github.com/jamesdeperio/RetrofitKit" class="link link--dark"><i class="fa fa-github"></i> Github</a></li>
+      <li class="menu__item"><a href="index.html" class="link link--dark"><i class="fa fa-home"></i> Home</a></li>
+    </ul>
+  </nav>
+  <div class="wrapper">
+    <aside class="doc__nav">
+      <ul>
+        <li class="js-btn selected">Get Started</li>
+        <li class="js-btn">Usage</li>
+        <li class="js-btn">SerializationFormatFactory</li>
+        <li class="js-btn">RetrofitManager</li>
+      </ul>
+    </aside>
+    <article class="doc__content">
+      <section class="js-section">
+        <h3 class="section__title">Get Started</h3>
+        <p>Learn how to use this library.</p>
+        <h3 class="section__title">Installation</h3>
+        <div class="code__block code__block--notabs">
+          <pre class="code code--block">
+            <code>
+              //root build.gradle
+              allprojects {
+                &nbsp;&nbsp;&nbsp;&nbsp;repositories {
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maven { url 'https://jitpack.io' }
+                &nbsp;&nbsp;&nbsp;&nbsp;}
+                }
+              //add dependency
+              dependencies {
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:RetrofitKit:v1.0.1'
+                &nbsp;&nbsp;&nbsp;&nbsp;//add add rxjava adapter
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.squareup.retrofit2:adapter-rxjava2:x.x.x'
+                &nbsp;&nbsp;&nbsp;&nbsp;//then add your converter factory library
+              }
+              </code>
+            </pre>
+          </div>
+        </section>
+
+        <section class="js-section">
+          <h3 class="section__title">Usage</h3>
+          <p>Here are the available classes that you can use to your project:</p>
+          <hr />
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">SerializationFormatFactory.Builder()<h3>
+            <p>This builder class is use to apply multiple converter.</p>
+          <table id="customers">
+            <tr>
+              <th>Method</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>setXMLConverterFactory(?)</td>
+              <td>Set custom converter for xml. Add <b>@XMLFormat</b> annotation to your api call.</td>
+            </tr>
+            <tr>
+              <td>setJSONConverterFactory(?)</td>
+              <td>Set custom converter for json. Add <b>@JSONFormat</b> annotation to your api call.</td>
+            </tr>
+            <tr>
+              <td>addCustomConverterFactory(?,?)</td>
+              <td>Add custom annotation and converter.</td>
+            </tr>
+          </table>
+          <p>Example:</p>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code style="font-size:12px">
+                //kotlin
+                //using TikXml library as xml converter
+                val tikXMLConverter = TikXmlConverterFactory.create(TikXml.Builder().exceptionOnUnreadXml(false).build())
+
+                //using GSON library as json converter
+                val gsonConverter = GsonConverterFactory.create(GsonBuilder().setLenient().create())
+
+                val multipleConverter = SerializationFormatFactory.Builder()
+                .setXMLConverterFactory(converterFactory = tikXMLConverter)
+                .setJSONConverterFactory(converterFactory = gsonConverter)
+                .addCustomConverterFactory(responseFormat = YAMLFormat::class.java, converterFactory = YAMLConverterFactory.create())
+                .build()
+
+                //add annotation for custom converter
+                @Retention(AnnotationRetention.RUNTIME)
+                annotation class YAMLFormat
+
+                interface RestRepository {
+                &nbsp;&nbsp;&nbsp;&nbsp;@GET("something")
+                &nbsp;&nbsp;&nbsp;&nbsp;@JSONFormat
+                &nbsp;&nbsp;&nbsp;&nbsp;fun getResponse1(): Observable&lt;Response&gt;
+
+                &nbsp;&nbsp;&nbsp;&nbsp;@GET("something")
+                &nbsp;&nbsp;&nbsp;&nbsp;fun getResponse2(): Call&lt;Response&gt;
+                &nbsp;&nbsp;&nbsp;&nbsp;@XMLFormat
+
+                &nbsp;&nbsp;&nbsp;&nbsp;@GET("something")
+                &nbsp;&nbsp;&nbsp;&nbsp;@YAMLFormat
+                &nbsp;&nbsp;&nbsp;&nbsp;fun getResponse3(): Call&lt;Response&gt;
+              }
+              </code>
+            </pre>
+            <hr />
+          </div>
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">RetrofitManager<h3>
+            <p>This base class is to apply lazy retrofit configuration.</p>
+          <table id="customers">
+            <tr>
+              <th>Method</th>
+              <th>Return Type</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>initCacheSize()</td>
+              <td>Int</td>
+              <td>Override cache size to your network call.</td>
+            </tr>
+            <tr>
+              <td>initBaseURL()</td>
+              <td>String</td>
+              <td>Override base url for api.</td>
+            </tr>
+            <tr>
+              <td>initWriteTimeOut()</td>
+              <td>Long</td>
+              <td>Override to change write timeout.</td>
+            </tr>
+            <tr>
+              <td>initReadTimeOut()</td>
+              <td>Long</td>
+              <td>Override to change read timeout.</td>
+            </tr>
+            <tr>
+              <td>initConnectTimeOut()</td>
+              <td>Long</td>
+              <td>Override to change connection timeout.</td>
+            </tr>
+            <tr>
+              <td>initConverterFactory()</td>
+              <td>Converter.Factory</td>
+              <td>Override to use your own custom converter library.</td>
+            </tr>
+            <tr>
+              <td>CallAdapter.Factory()</td>
+              <td>CallAdapter.Factory</td>
+              <td>Override to use rx java latest library for call adapter.</td>
+            </tr>
+            <tr>
+              <td>isPrintLogEnabled()</td>
+              <td>Boolean</td>
+              <td>Override to to allow log printing or not.</td>
+            </tr>
+            <tr>
+              <td>create(?)</td>
+              <td>Object</td>
+              <td>Add your repository interface to assign as api.</td>
+            </tr>
+          </table>
+          <p>Example:</p>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code style="font-size:12px">
+                //kotlin
+                class NetworkManager(context: Context) : RetrofitManager(context=context) {
+                &nbsp;&nbsp;&nbsp;&nbsp;private var restRepository:RestRepository = create(RestRepository::class.java) as RestRepository //provide your api inter
+                &nbsp;&nbsp;&nbsp;&nbsp;override fun initBaseURL(): String = "baseURL.com/"
+                &nbsp;&nbsp;&nbsp;&nbsp;override fun initCacheSize(): Int = 0
+                &nbsp;&nbsp;&nbsp;&nbsp;override fun initConnectTimeOut(): Long = 60
+                &nbsp;&nbsp;&nbsp;&nbsp;override fun initReadTimeOut(): Long = 60
+                &nbsp;&nbsp;&nbsp;&nbsp;override fun initWriteTimeOut(): Long = 60
+                &nbsp;&nbsp;&nbsp;&nbsp;override fun initConverterFactory(): Converter.Factory = multipleConverter
+                &nbsp;&nbsp;&nbsp;&nbsp;override fun initRxAdapterFactory(): CallAdapter.Factory = RxJava2CallAdapterFactory.create()
+                &nbsp;&nbsp;&nbsp;&nbsp;override fun isPrintLogEnabled(): Boolean = true
+                }
+
+                val networkManager = NetworkManager(context)
+                networkManager.getResponse1
+                  .subscribeOn(Schedulers.io())
+                  .observeOn(Schedulers.newThread())
+                  .subscribe{ /* response*/ }
+              </code>
+            </pre>
+              <p><b>Feel free to ask and add some issue on my github repository! Cheers!</b></p>
+            <hr />
+        </section>
+      </article>
+    </div>
+
+    <footer class="footer">RetrofitKit made simple <a href="https://tympanus.net/codrops/" target="_blank" class="link link--light">by jamesdeperio</a>.</footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="scribbler.js"></script>
+  </body>
+  </html>
