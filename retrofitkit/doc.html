@@ -182,7 +182,7 @@
               <code style="font-size:12px">
                 //kotlin
                 class NetworkManager(context: Context) : RetrofitManager(context=context) {
-                &nbsp;&nbsp;&nbsp;&nbsp;private var restRepository:RestRepository = create(RestRepository::class.java) as RestRepository //provide your api inter
+                &nbsp;&nbsp;&nbsp;&nbsp;private var restRepository:RestRepository = create(RestRepository::class.java) as RestRepository //provide your api interface
                 &nbsp;&nbsp;&nbsp;&nbsp;override fun initBaseURL(): String = "baseURL.com/"
                 &nbsp;&nbsp;&nbsp;&nbsp;override fun initCacheSize(): Int = 0
                 &nbsp;&nbsp;&nbsp;&nbsp;override fun initConnectTimeOut(): Long = 60
