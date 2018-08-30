@@ -15,7 +15,7 @@ if (document.getElementsByClassName('demo').length > 0) {
   var txt = `
 
             class NetworkManager(context: Context) : RetrofitManager(context=context) {
-                private var restRepository:RestRepository = create(RestRepository::class.java) as RestRepository //provide your api inter
+                private var restRepository:RestRepository = create(RestRepository::class.java) as RestRepository //provide your api interfacee
                 override fun initBaseURL(): String = "baseURL.com/"
                 override fun initCacheSize(): Int = 0
                 override fun initConnectTimeOut(): Long = 60
@@ -41,7 +41,7 @@ if (document.getElementsByClassName('demo').length > 0) {
             }
 
             val networkManager = NetworkManager(context)
-            networkManager.getResponse1
+            networkManager.getResponse1()
               .subscribeOn(Schedulers.io())
               .observeOn(Schedulers.newThread())
               .subscribe{ /* response*/ }`;
