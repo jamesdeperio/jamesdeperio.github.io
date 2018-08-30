@@ -194,7 +194,7 @@
                 }
 
                 val networkManager = NetworkManager(context)
-                networkManager.getResponse1
+                networkManager.getResponse1()
                   .subscribeOn(Schedulers.io())
                   .observeOn(Schedulers.newThread())
                   .subscribe{ /* response*/ }
