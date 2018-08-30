@@ -15,7 +15,7 @@ if (document.getElementsByClassName('demo').length > 0) {
   var txt = `
 
             class NetworkManager(context: Context) : RetrofitManager(context=context) {
-                private var restRepository:RestRepository = create(RestRepository::class.java) as RestRepository //provide your api interfacee
+                private var restRepository:RestRepository = create(RestRepository::class.java) as RestRepository //provide your api interface
                 override fun initBaseURL(): String = "baseURL.com/"
                 override fun initCacheSize(): Int = 0
                 override fun initConnectTimeOut(): Long = 60
