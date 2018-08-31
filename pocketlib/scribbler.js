@@ -38,8 +38,6 @@ if (document.getElementsByClassName('demo').length > 0) {
                 }
                 override fun initRxAdapterFactory(): CallAdapter.Factory = RxJava2CallAdapterFactory.create()
                 override fun isPrintLogEnabled(): Boolean = true
-                override fun OkHttpClient.Builder.interceptorConfiguration(builder: OkHttpClient.Builder): OkHttpClient.Builder
-                = builder.addInterceptor(INTERCEPTOR)
             }
 
             val networkManager = NetworkManager(context)
