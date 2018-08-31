@@ -109,8 +109,8 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;fun getResponse1(): Observable&lt;Response&gt;
 
                 &nbsp;&nbsp;&nbsp;&nbsp;@GET("something")
-                &nbsp;&nbsp;&nbsp;&nbsp;fun getResponse2(): Call&lt;Response&gt;
                 &nbsp;&nbsp;&nbsp;&nbsp;@XMLFormat
+                &nbsp;&nbsp;&nbsp;&nbsp;fun getResponse2(): Call&lt;Response&gt;
 
                 &nbsp;&nbsp;&nbsp;&nbsp;@GET("something")
                 &nbsp;&nbsp;&nbsp;&nbsp;@YAMLFormat
@@ -171,7 +171,7 @@
               <td>Override to allow log printing or not.</td>
             </tr>
             <tr>
-              <td>OkHttpClient.Builder.interceptorConfiguration(builder: OkHttpClient.Builder)</td>
+              <td>interceptorConfiguration(builder)</td>
               <td>OkHttpClient.Builder</td>
               <td>Override to add more configuration to OkHttpClient.</td>
             </tr>
@@ -188,7 +188,7 @@
                 //kotlin
                 class NetworkManager(context: Context) : RetrofitManager(context=context) {
                 &nbsp;&nbsp;&nbsp;&nbsp;private var restRepository:RestRepository = create(RestRepository::class.java) as RestRepository //provide your api interface
-                &nbsp;&nbsp;&nbsp;&nbsp;override fun initBaseURL(): String = "baseURL.com/"
+                &nbsp;&nbsp;&nbsp;&nbsp;override fun initBaseURL(): String = "http://www.baseURL.com/"
                 &nbsp;&nbsp;&nbsp;&nbsp;override fun initCacheSize(): Int = 0
                 &nbsp;&nbsp;&nbsp;&nbsp;override fun initConnectTimeOut(): Long = 60
                 &nbsp;&nbsp;&nbsp;&nbsp;override fun initReadTimeOut(): Long = 60
