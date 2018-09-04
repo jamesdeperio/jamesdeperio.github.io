@@ -33,6 +33,7 @@
         <li class="js-btn">NavigateUtil</li>
         <li class="js-btn">PocketSpinnerDialog</li>
         <li class="js-btn">PocketDialog</li>
+        <li class="js-btn">More CustomView</li>
       </ul>
     </aside>
     <article class="doc__content">
@@ -322,6 +323,130 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;.commit()
               </code>
             </pre>
+          <hr />
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">PocketSpinnerDialog&lt;T&gt;<h3>
+            <p>Searchable Spinner Dialog builder. Just assign data object as the generic.</p>
+          <table id="customers">
+            <tr>
+              <th>Method</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>setListener(?)</td>
+              <td>Assign item selected listener.</td>
+            </tr>
+            <tr>
+              <td>
+                addItem(itemObject:T,itemString:String)<br/>
+                addItem(itemString:String)<br/>
+                addItem(items:MutableList&lt;T&gt;)<br/>
+                addItem(items:MutableList&lt;T&gt;,itemString:MutableList&lt;String&gt;)<br/>
+                addItem(items:MutableMap&lt;T,String&gt;)
+                </td>
+              <td>Ways to add an item to spinner dialog.</td>
+            </tr>
+
+          </table>
+          <p>Example:</p>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code style="font-size:12px">
+                //kotlin
+                data class Person (var id:Int=0,  var name:String? = null, var address:String? = null )
+
+                var dialog= PocketSpinnerDialog<Person>(context = context,isFullScreen = false).apply {
+                &nbsp;&nbsp;&nbsp;&nbsp;this.listener= object :PocketSpinnerDialog.Listener<Person> {
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;override fun onItemSelected(selectedObject: Person, selectedItem: String, selectedIndex: Int) {
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//display selected item to textview or button
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                &nbsp;&nbsp;&nbsp;&nbsp;}
+
+                val person1 = Person(id = 1,name = "ABC",address = null)
+                this.addItem(itemObject = person1,itemString = person1.name!!)
+
+                val person2 = Person(id = 1,name = "XYZ",address = null)
+                this.addItem(itemObject = person2,itemString = person2.name!!)
+              }
+
+              dialog.show()
+              </code>
+            </pre>
+          <hr />
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">PocketDialog<h3>
+            <p>Customizable dialog like warning or error.</p>
+
+          <p>Example:</p>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code style="font-size:12px">
+                // DEFAULT DESIGN AND LOTTIE ANIMATION:
+                // PocketDialog.Type.DIALOG_NO_INTERNET_CONNECTION
+                // PocketDialog.Type.DIALOG_WARNING
+                // PocketDialog.Type.DIALOG_REWARD
+                // PocketDialog.Type.DIALOG_BASIC
+                // PocketDialog.Type.DIALOG_ERROR
+                // PocketDialog.Type.DIALOG_SUCCESS
+                // PocketDialog.Type.DIALOG_LOADER
+
+                var dialog = PocketDialog(context = context,type = PocketDialog.Type.DIALOG_WARNING,isFullScreen = false).apply {
+                &nbsp;&nbsp;&nbsp;&nbsp;// okAction (customized ok button)
+                &nbsp;&nbsp;&nbsp;&nbsp;// cancelAction (customized cance button)
+                &nbsp;&nbsp;&nbsp;&nbsp;// title (customized title textview)
+                &nbsp;&nbsp;&nbsp;&nbsp;// description (customized description textview)
+                &nbsp;&nbsp;&nbsp;&nbsp;// view (customized dialog view)
+                &nbsp;&nbsp;&nbsp;&nbsp;// lottie (customized lottie animation)
+              }
+
+              dialog.show()
+              </code>
+            </pre>
+          <hr />
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">More CustomView<h3>
+            <p>This list of custom view prevents bugs/error caused by animation. Can be use in xml.</p>
+            <table id="customers">
+              <tr>
+                <th>View</th>
+              </tr>
+              <tr>
+                <td>PocketHorizontalScrollView()</td>
+              </tr>
+              <tr>
+                <td>PocketNestedScrollView()</td>
+              </tr>
+              <tr>
+                <td>PocketScrollView()</td>
+              </tr>
+              <tr>
+                <td>PocketTabLayout()</td>
+              </tr>
+              <tr>
+                <td>PocketViewPager()</td>
+              </tr>
+              <tr>
+                <td>PocketRecyclerView()</td>
+              </tr>
+            </table>
+            <table id="customers">
+              <tr>
+                <th>RecyclerViewLayoutManager</th>
+              </tr>
+              <tr>
+                <td>PocketGridLayout()</td>
+              </tr>
+              <tr>
+                <td>PocketLinearLayout()</td>
+              </tr>
+              <tr>
+                <td>PocketStaggeredLayout()</td>
+              </tr>
+            </table>
+
           <hr />
         </section>
       </article>

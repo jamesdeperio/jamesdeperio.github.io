@@ -12,39 +12,7 @@ var getAll = function (selector, scope) {
 // setup typewriter effect in the terminal demo
 if (document.getElementsByClassName('demo').length > 0) {
   var i = 0;
-  var txt = `
-
-            class NetworkManager(context: Context) : RetrofitManager(context=context) {
-                private var restRepository:RestRepository = create(RestRepository::class.java) as RestRepository //provide your api interface
-                override fun initBaseURL(): String = "baseURL.com/"
-                override fun initCacheSize(): Int = 0
-                override fun initConnectTimeOut(): Long = 60
-                override fun initReadTimeOut(): Long = 60
-                override fun initWriteTimeOut(): Long = 60
-                override fun initConverterFactory(): Converter.Factory {
-                    //using TikXml library as xml converter
-                    val tikXMLConverter = TikXmlConverterFactory.create(TikXml.Builder().exceptionOnUnreadXml(false).build())
-
-                  //using GSON library as json converter
-                  val gsonConverter = GsonConverterFactory.create(GsonBuilder().setLenient().create())
-
-                  val multipleConverter = SerializationFormatFactory.Builder()
-                  .setXMLConverterFactory(converterFactory = tikXMLConverter)
-                  .setJSONConverterFactory(converterFactory = gsonConverter)
-                  .addCustomConverterFactory(responseFormat = YAMLFormat::class.java, converterFactory = YAMLConverterFactory.create())
-                  .build()
-
-                  return multipleConverter
-                }
-                override fun initRxAdapterFactory(): CallAdapter.Factory = RxJava2CallAdapterFactory.create()
-                override fun isPrintLogEnabled(): Boolean = true
-            }
-
-            val networkManager = NetworkManager(context)
-            networkManager.getResponse1()
-              .subscribeOn(Schedulers.io())
-              .observeOn(Schedulers.newThread())
-              .subscribe{ /* response*/ }`;
+  var txt = ``;
   var speed = 10;
 
   function typeItOut () {
