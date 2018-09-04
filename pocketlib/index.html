@@ -4,7 +4,7 @@
       <meta charset="utf-8">
       <meta name="description" content="">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>RetrofitKit</title>
+      <title>PocketLib</title>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900" rel="stylesheet">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css">
@@ -18,13 +18,13 @@
       <ul class="menu">
         <div class="menu__item toggle"><span></span></div>
         <li class="menu__item"><a href="doc.html" class="link link--dark"><i class="fa fa-book"></i> Documentation</a></li>
-        <li class="menu__item"><a href="https://github.com/jamesdeperio/RetrofitKit" class="link link--dark"><i class="fa fa-github"></i> Github</a></li>
+        <li class="menu__item"><a href="https://github.com/jamesdeperio/PocketLib" class="link link--dark"><i class="fa fa-github"></i> Github</a></li>
       </ul>
     </nav>
     <div class="hero">
-      <img src="retrofitkit.png" style="relative; background-size: cover; z-index: 1; background-image: url(../../images/bg.jpg)"/>
-      <h1 class="hero__title">RetrofitKit</h1>
-      <p class="hero__description">Multiple Converter Factory & Base Class for Retrofit.</p>
+      <img src="pocketlib.png" style="relative; background-size: cover; z-index: 1; background-image: url(../../images/bg.jpg)"/>
+      <h1 class="hero__title">PocketLib</h1>
+      <p class="hero__description">Custom views(eg. Searchable Spinner Dialog) and Base Class for Activity, Fragment, Adapter and ViewHolder.</p>
     </div>
     <div class="hero__terminal">
       <pre>
@@ -48,10 +48,7 @@
                 }<br/>
               //add dependency<br/>
               dependencies {<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:RetrofitKit:v1.0.1'<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;//add rxjava adapter<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.squareup.retrofit2:adapter-rxjava2:x.x.x'<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;//then add your converter factory library<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:PocketLib:v2.0.1'<br/>
               }
             </code>
 
@@ -64,8 +61,20 @@
           <p>For better readability and understanding.</p>
         </div>
         <div class="feature__item">
-          <h3 class="section__title">Custom Converter</h3>
-          <p>You can create your own converter and annotation the assign it.</p>
+          <h3 class="section__title">Multiple ViewHolder</h3>
+          <p>You can create different view holder design as much as you want with easier patttern.</p>
+        </div>
+        <div class="feature__item">
+          <h3 class="section__title">Searchable Spinner Dialog</h3>
+          <p>Pass any object and just specify what item to display!</p>
+        </div>
+        <div class="feature__item">
+          <h3 class="section__title">ViewPager Builder</h3>
+          <p>Build your viewpager easily with few line of code!</p>
+        </div>
+        <div class="feature__item">
+          <h3 class="section__title">Avoid Animation Bug/Error</h3>
+          <p>Using the library custom views, it prevents bug/error caused by animation.</p>
         </div>
         <div class="feature__item">
           <h3 class="section__title">Lazy Coding</h3>
@@ -84,33 +93,38 @@
 
         <div class="changelog__item">
           <div class="changelog__meta">
-            <h4 class="changelog__title">v1.0.1</h4>
+            <h4 class="changelog__title">v2.0.1</h4>
             <small class="changelog__date">8/24/2018</small>
           </div>
           <div class="changelog__detail">
             <ul>
               <li>Updated: kotlin dependency</li>
-              <li>Updated: okhttp3:logging-interceptor dependency</li>
               <li>Fixed: exclude 'META-INF/app_release.kotlin_module'</li>
             </ul>
           </div>
         </div>
         <div class="changelog__item">
           <div class="changelog__meta">
-            <h4 class="changelog__title">v1.0.0</h4>
-            <small class="changelog__date">5/10/2018</small>
+            <h4 class="changelog__title">v2.0.0</h4>
+            <small class="changelog__date">5/17/2018</small>
           </div>
           <div class="changelog__detail">
             <ul>
-              <li>Created: base class for lazy retrofit configuration</li>
-              <li>Created: multiple converter</li>
+              <li>Changed: version 2.x of codepocket (renamed)</li>
+              <li>Base class for activity,fragment,adapter,viewholder</li>
+              <li>Page Buider for view pager</li>
+              <li>Navigate Util</li>
+              <li>Custom Views</li>
+              <li>Added: PocketSpinnerDialog</li>
+              <li>Added: PocketDialog</li>
+              <li>Removed: retrofit module has been moved to separate library(retrofitkit)</li>
             </ul>
           </div>
         </div>
 
       </div>
     </div>
-    <footer class="footer">RetrofitKit made simple <a href="https://github.com/jamesdeperio" target="_blank" class="link link--light">by jamesdeperio</a>.</footer>
+    <footer class="footer">PocketLib made simple <a href="https://github.com/jamesdeperio" target="_blank" class="link link--light">by jamesdeperio</a>.</footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script src="scribbler.js"></script>

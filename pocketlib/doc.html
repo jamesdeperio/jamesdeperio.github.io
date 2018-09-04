@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RetrofitKit Documentation</title>
+  <title>PocketLib Documentation</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900" rel="stylesheet">
   <link rel="stylesheet" href="scribbler-global.css">
@@ -14,10 +14,10 @@
 <body>
   <div class="doc__bg"></div>
   <nav class="header">
-    <h1 class="logo">Retrofit<span class="logo__thin">Kit</span></h1>
+    <h1 class="logo">Pocket<span class="logo__thin">Lib</span></h1>
     <ul class="menu">
       <div class="menu__item toggle"><span></span></div>
-      <li class="menu__item"><a href="https://github.com/jamesdeperio/RetrofitKit" class="link link--dark"><i class="fa fa-github"></i> Github</a></li>
+      <li class="menu__item"><a href="https://github.com/jamesdeperio/PocketLib" class="link link--dark"><i class="fa fa-github"></i> Github</a></li>
       <li class="menu__item"><a href="index.html" class="link link--dark"><i class="fa fa-home"></i> Home</a></li>
     </ul>
   </nav>
@@ -26,14 +26,19 @@
       <ul>
         <li class="js-btn selected">Get Started</li>
         <li class="js-btn">Usage</li>
-        <li class="js-btn">SerializationFormatFactory</li>
-        <li class="js-btn">RetrofitManager</li>
+        <li class="js-btn">BaseController</li>
+        <li class="js-btn">PocketAdapter</li>
+        <li class="js-btn">PocketViewHolder</li>
+        <li class="js-btn">PageBuilder</li>
+        <li class="js-btn">NavigateUtil</li>
+        <li class="js-btn">PocketSpinnerDialog</li>
+        <li class="js-btn">PocketDialog</li>
       </ul>
     </aside>
     <article class="doc__content">
       <section class="js-section">
         <h3 class="section__title">Get Started</h3>
-        <p>Learn how to use this library.</p>
+        <p>Learn how to use this library. Better if consider using <b><a href="https://github.com/jamesdeperio/CodePocketBuilder">CodePocketBuilder</a></b>, a code template generator for bbetter dessignn patter</p>
         <h3 class="section__title">Installation</h3>
         <div class="code__block code__block--notabs">
           <pre class="code code--block">
@@ -46,10 +51,7 @@
                 }
               //add dependency
               dependencies {
-                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:RetrofitKit:v1.0.1'
-                &nbsp;&nbsp;&nbsp;&nbsp;//add rxjava adapter
-                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.squareup.retrofit2:adapter-rxjava2:x.x.x'
-                &nbsp;&nbsp;&nbsp;&nbsp;//then add your converter factory library
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:PocketLib:v2.0.1'
               }
               </code>
             </pre>
@@ -62,24 +64,20 @@
           <hr />
         </section>
         <section class="js-section">
-          <h3 class="section__title">SerializationFormatFactory.Builder()<h3>
-            <p>This builder class is use to apply multiple converter.</p>
+          <h3 class="section__title">BaseActivity / BaseFragment / BaseSwipeFragment<h3>
+            <p>Extends your class using this base controller.</p>
           <table id="customers">
             <tr>
               <th>Method</th>
               <th>Description</th>
             </tr>
             <tr>
-              <td>setXMLConverterFactory(?)</td>
-              <td>Set custom converter for xml. Add <b>@XMLFormat</b> annotation to your api call.</td>
+              <td>initialization(savedInstanceState: Bundle?)</td>
+              <td>Place where you should initialize or set your object.</td>
             </tr>
             <tr>
-              <td>setJSONConverterFactory(?)</td>
-              <td>Set custom converter for json. Add <b>@JSONFormat</b> annotation to your api call.</td>
-            </tr>
-            <tr>
-              <td>addCustomConverterFactory(?,?)</td>
-              <td>Add custom annotation and converter.</td>
+              <td>onLoadEvent(savedInstanceState: Bundle?)</td>
+              <td>On View did load. Start your procedure.</td>
             </tr>
           </table>
           <p>Example:</p>
@@ -87,34 +85,13 @@
             <pre class="code code--block">
               <code style="font-size:12px">
                 //kotlin
-                //using TikXml library as xml converter
-                val tikXMLConverter = TikXmlConverterFactory.create(TikXml.Builder().exceptionOnUnreadXml(false).build())
-
-                //using GSON library as json converter
-                val gsonConverter = GsonConverterFactory.create(GsonBuilder().setLenient().create())
-
-                val multipleConverter = SerializationFormatFactory.Builder()
-                .setXMLConverterFactory(converterFactory = tikXMLConverter)
-                .setJSONConverterFactory(converterFactory = gsonConverter)
-                .addCustomConverterFactory(responseFormat = YAMLFormat::class.java, converterFactory = YAMLConverterFactory.create())
-                .build()
-
-                //add annotation for custom converter
-                @Retention(AnnotationRetention.RUNTIME)
-                annotation class YAMLFormat
-
-                interface RestRepository {
-                &nbsp;&nbsp;&nbsp;&nbsp;@GET("something")
-                &nbsp;&nbsp;&nbsp;&nbsp;@JSONFormat
-                &nbsp;&nbsp;&nbsp;&nbsp;fun getResponse1(): Observable&lt;Response&gt;
-
-                &nbsp;&nbsp;&nbsp;&nbsp;@GET("something")
-                &nbsp;&nbsp;&nbsp;&nbsp;fun getResponse2(): Call&lt;Response&gt;
-                &nbsp;&nbsp;&nbsp;&nbsp;@XMLFormat
-
-                &nbsp;&nbsp;&nbsp;&nbsp;@GET("something")
-                &nbsp;&nbsp;&nbsp;&nbsp;@YAMLFormat
-                &nbsp;&nbsp;&nbsp;&nbsp;fun getResponse3(): Call&lt;Response&gt;
+                class MainController : BaseSwipeFragment(), HasMainContract.Event {
+                &nbsp;&nbsp;&nbsp;&nbsp;override fun initialization(savedInstanceState: Bundle?) {
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//todo
+                &nbsp;&nbsp;&nbsp;&nbsp;}
+                &nbsp;&nbsp;&nbsp;&nbsp;override fun onLoadEvent(savedInstanceState: Bundle?) {
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//todo
+                &nbsp;&nbsp;&nbsp;&nbsp;}
               }
               </code>
             </pre>
@@ -122,58 +99,66 @@
           </div>
         </section>
         <section class="js-section">
-          <h3 class="section__title">RetrofitManager<h3>
-            <p>This base class is to apply lazy retrofit configuration.</p>
+          <h3 class="section__title">PocketAdapter<h3>
+            <p>This base class is for recyclerview adapter.</p>
           <table id="customers">
             <tr>
               <th>Method</th>
-              <th>Return Type</th>
               <th>Description</th>
             </tr>
             <tr>
-              <td>initCacheSize()</td>
-              <td>Int</td>
-              <td>Override cache size to your network call.</td>
+              <td>getItemCount()</td>
+              <td>Override and set the list size.</td>
             </tr>
             <tr>
-              <td>initBaseURL()</td>
-              <td>String</td>
-              <td>Override base url for api.</td>
+              <td>viewTypeCondition(position: Int)</td>
+              <td>Override and set condition on what viewholder to display. Default is 0.</td>
             </tr>
             <tr>
-              <td>initWriteTimeOut()</td>
-              <td>Long</td>
-              <td>Override to change write timeout.</td>
+              <td>addViewHolder(viewHolder: PocketViewHolder)</td>
+              <td>Use to add and bind viewholder to adapter.</td>
+            </tr>
+
+          </table>
+          <p>Example:</p>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code style="font-size:12px">
+                //kotlin
+                data class YOURDATA(
+                &nbsp;&nbsp;&nbsp;&nbsp;var isHeader:Boolean = false,
+                &nbsp;&nbsp;&nbsp;&nbsp;var isFooter:Boolean = false,
+                &nbsp;&nbsp;&nbsp;&nbsp;var value:String? = null
+                )
+
+                class YOURADAPTER : PocketAdapter() {
+                  &nbsp;&nbsp;&nbsp;&nbsp;var dataList: MutableList&lt;YOURDATA&gt; = ArrayList()
+                  &nbsp;&nbsp;&nbsp;&nbsp;override fun getItemCount(): Int = dataList.size
+                  &nbsp;&nbsp;&nbsp;&nbsp;override fun viewTypeCondition(position: Int)
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= if(dataList[position].isHeader()) 0
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if(dataList[position].isFooter()) 1
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else 2
+                  // NOTE: magic number, you can improve using enum
+              }
+              </code>
+            </pre>
+          <hr />
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">PocketViewHolder<h3>
+            <p>This base class is for recyclerview viewholder.</p>
+          <table id="customers">
+            <tr>
+              <th>Method</th>
+              <th>Description</th>
             </tr>
             <tr>
-              <td>initReadTimeOut()</td>
-              <td>Long</td>
-              <td>Override to change read timeout.</td>
+              <td>onBindViewHolder (view: View, position: Int)</td>
+              <td>Bind your datalist on view.</td>
             </tr>
             <tr>
-              <td>initConnectTimeOut()</td>
-              <td>Long</td>
-              <td>Override to change connection timeout.</td>
-            </tr>
-            <tr>
-              <td>initConverterFactory()</td>
-              <td>Converter.Factory</td>
-              <td>Override to use your own custom converter library.</td>
-            </tr>
-            <tr>
-              <td>CallAdapter.Factory()</td>
-              <td>CallAdapter.Factory</td>
-              <td>Override to use rx java latest library for call adapter.</td>
-            </tr>
-            <tr>
-              <td>isPrintLogEnabled()</td>
-              <td>Boolean</td>
-              <td>Override to to allow log printing or not.</td>
-            </tr>
-            <tr>
-              <td>create(?)</td>
-              <td>Object</td>
-              <td>Add your repository interface to assign as api.</td>
+              <td>setContentView(layoutID: Int)</td>
+              <td>Set the layout of viewholder.</td>
             </tr>
           </table>
           <p>Example:</p>
@@ -181,32 +166,168 @@
             <pre class="code code--block">
               <code style="font-size:12px">
                 //kotlin
-                class NetworkManager(context: Context) : RetrofitManager(context=context) {
-                &nbsp;&nbsp;&nbsp;&nbsp;private var restRepository:RestRepository = create(RestRepository::class.java) as RestRepository //provide your api interface
-                &nbsp;&nbsp;&nbsp;&nbsp;override fun initBaseURL(): String = "baseURL.com/"
-                &nbsp;&nbsp;&nbsp;&nbsp;override fun initCacheSize(): Int = 0
-                &nbsp;&nbsp;&nbsp;&nbsp;override fun initConnectTimeOut(): Long = 60
-                &nbsp;&nbsp;&nbsp;&nbsp;override fun initReadTimeOut(): Long = 60
-                &nbsp;&nbsp;&nbsp;&nbsp;override fun initWriteTimeOut(): Long = 60
-                &nbsp;&nbsp;&nbsp;&nbsp;override fun initConverterFactory(): Converter.Factory = multipleConverter
-                &nbsp;&nbsp;&nbsp;&nbsp;override fun initRxAdapterFactory(): CallAdapter.Factory = RxJava2CallAdapterFactory.create()
-                &nbsp;&nbsp;&nbsp;&nbsp;override fun isPrintLogEnabled(): Boolean = true
+                class HEADERVIEWHOLDER( private val adapter: YOURADAPTER) : PocketViewHolder() {
+                &nbsp;&nbsp;&nbsp;&nbsp;override fun onBindViewHolder (view: View, position: Int) {
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view.findViewById<TextView>(R.id.textView)!!.text = adapter.dataList[position].data.value
+                &nbsp;&nbsp;&nbsp;&nbsp;}
                 }
 
-                val networkManager = NetworkManager(context)
-                networkManager.getResponse1()
-                  .subscribeOn(Schedulers.io())
-                  .observeOn(Schedulers.newThread())
-                  .subscribe{ /* response*/ }
+                class FOOTERVIEWHOLDER( private val adapter: YOURADAPTER) : PocketViewHolder() {
+                &nbsp;&nbsp;&nbsp;&nbsp;override fun onBindViewHolder (view: View, position: Int) {
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view.findViewById<TextView>(R.id.textView)!!.text = adapter.dataList[position].data.value
+                &nbsp;&nbsp;&nbsp;&nbsp;}
+                }
+
+                class ITEMVIEWHOLDER( private val adapter: YOURADAPTER) : PocketViewHolder() {
+                &nbsp;&nbsp;&nbsp;&nbsp;override fun onBindViewHolder (view: View, position: Int) {
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view.findViewById<TextView>(R.id.textView)!!.text = adapter.dataList[position].data.value
+                &nbsp;&nbsp;&nbsp;&nbsp;}
+                }
+
+                val adapter = YOURADAPTER()
+                val header = HEADERVIEWHOLDER(adapter)
+                val footer = FOOTERVIEWHOLDER(adapter)
+                val content = ITEMVIEWHOLDER(adapter)
+                header.setContentView(R.layout.item_list_header)
+                footer.setContentView(R.layout.item_list_footer)
+                content.setContentView(R.layout.item_list_content)
+
+                adapter.addViewHolder(header) // index 0 itemViewType
+                adapter.addViewHolder(footer) // index 1 itemViewType
+                adapter.addViewHolder(content) // index 2 itemViewType
+                //Note: This is the magic number.
               </code>
             </pre>
-              <p><b>Feel free to ask and add issue on my github repository! Cheers!</b></p>
-            <hr />
+          <hr />
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">PageBuilder<h3>
+            <p>Builder for creating viewpager.</p>
+          <table id="customers">
+            <tr>
+              <th>Method</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>setViewPager(?)</td>
+              <td>Assign viewpager.</td>
+            </tr>
+            <tr>
+              <td>setTabLayout(?)</td>
+              <td>Assign tab layout.</td>
+            </tr>
+            <tr>
+              <td>setFragmentManager(?)</td>
+              <td>Assign fragment manager/ child fragment manager.</td>
+            </tr>
+            <tr>
+              <td>addPage(title: String, fragment: Fragment)</td>
+              <td>Add page in viewpager.</td>
+            </tr>
+            <tr>
+              <td>build()</td>
+              <td>Build to commit configuration.</td>
+            </tr>
+          </table>
+          <p>Example:</p>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code style="font-size:12px">
+                //kotlin
+                PageBuilder.build {
+                  &nbsp;&nbsp;&nbsp;&nbsp;setViewPager(VIEW_PAGER)
+                  &nbsp;&nbsp;&nbsp;&nbsp;setFragmentManager(FRAGMENT_MANAGER/CHILD_FRAGMENT_MANAGER)
+                  &nbsp;&nbsp;&nbsp;&nbsp;setTabLayout(TAB_LAYOUT)
+                  &nbsp;&nbsp;&nbsp;&nbsp;setPageTransformer(TRANSFORMER) // can be null
+                  &nbsp;&nbsp;&nbsp;&nbsp;addPage("tab1",YourFragment())
+                  &nbsp;&nbsp;&nbsp;&nbsp;addPage("tab2",YourFragment())
+                  &nbsp;&nbsp;&nbsp;&nbsp;addPage("tab3",YourFragment())
+                }
+              </code>
+            </pre>
+          <hr />
+        </section>
+        <section class="js-section">
+          <h3 class="section__title">Navigate<h3>
+            <p>Utility class for fragment transaction.</p>
+          <table id="customers">
+            <tr>
+              <th>Method</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>using(?)</td>
+              <td>Assign fragment manager.</td>
+            </tr>
+            <tr>
+              <td>change(?)</td>
+              <td>Assign layout ID to be changed.</td>
+            </tr>
+            <tr>
+              <td>withBackStack(?)</td>
+              <td>Allow backstack or not.</td>
+            </tr>
+            <tr>
+              <td>from(?)</td>
+              <td>Assign current fragment. If function is not used it will just replace the view.</td>
+            </tr>
+            <tr>
+              <td>to(?)</td>
+              <td>Assign fragment to use.</td>
+            </tr>
+            <tr>
+              <td>from(currentFragment: Fragment, fromAnimEnter: Int, fromAnimExit: Int)</td>
+              <td>Assign current fragment and xml anim ID.</td>
+            </tr>
+            <tr>
+              <td>to(fragmentToChange: Fragment, toAnimEnter: Int, toAnimExit: Int)</td>
+              <td>Assign fragment to use and xml anim ID.</td>
+            </tr>
+            <tr>
+              <td>remove(?)</td>
+              <td>Assign fragment to remove.</td>
+            </tr>
+            <tr>
+              <td>addSharedElement(view:View,name:String)</td>
+              <td>Add shared element.</td>
+            </tr>
+            <tr>
+              <td>commitAllowingStateLoss()</td>
+              <td>Commit transaction that allow state loss.</td>
+            </tr>
+            <tr>
+              <td>commit()</td>
+              <td>Commit transaction.</td>
+            </tr>
+
+          </table>
+          <p>Example:</p>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code style="font-size:12px">
+                //kotlin
+                //from activity / replace fragment
+                Navigate.using(fragmentManager = fragmentManager!!)
+                &nbsp;&nbsp;&nbsp;&nbsp;.change(layoutID = R.id.fragment_container)
+                &nbsp;&nbsp;&nbsp;&nbsp;.to(fragmentToChange = YOUR_FRAGMENT)
+                &nbsp;&nbsp;&nbsp;&nbsp;.withBackStack(isBackstackEnabled = false)
+                &nbsp;&nbsp;&nbsp;&nbsp;.commit()
+
+                //from fragment with backstack / using BaseSwipeFragmen
+                Navigate.using(fragmentManager = fragmentManager!!)
+                &nbsp;&nbsp;&nbsp;&nbsp;.change(layoutID = R.id.fragment_container)
+                &nbsp;&nbsp;&nbsp;&nbsp;.from(currentFragment = fragment)
+                &nbsp;&nbsp;&nbsp;&nbsp;.to(fragmentToChange = YOUR_FRAGMENT)
+                &nbsp;&nbsp;&nbsp;&nbsp;.withBackStack(isBackstackEnabled = true)
+                &nbsp;&nbsp;&nbsp;&nbsp;.commit()
+              </code>
+            </pre>
+          <hr />
         </section>
       </article>
     </div>
 
-    <footer class="footer">RetrofitKit made simple <a href="https://github.com/jamesdeperio" target="_blank" class="link link--light">by jamesdeperio</a>.</footer>
+    <footer class="footer">PocketLib made simple <a href="https://github.com/jamesdeperio" target="_blank" class="link link--light">by jamesdeperio</a>.</footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script src="scribbler.js"></script>
