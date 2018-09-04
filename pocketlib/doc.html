@@ -362,12 +362,10 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//display selected item to textview or button
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
                 &nbsp;&nbsp;&nbsp;&nbsp;}
-
-                val person1 = Person(id = 1,name = "ABC",address = null)
-                this.addItem(itemObject = person1,itemString = person1.name!!)
-
-                val person2 = Person(id = 1,name = "XYZ",address = null)
-                this.addItem(itemObject = person2,itemString = person2.name!!)
+                &nbsp;&nbsp;&nbsp;&nbsp;val person1 = Person(id = 1,name = "ABC",address = null)
+                &nbsp;&nbsp;&nbsp;&nbsp;this.addItem(itemObject = person1,itemString = person1.name!!)
+                &nbsp;&nbsp;&nbsp;&nbsp;val person2 = Person(id = 1,name = "XYZ",address = null)
+                &nbsp;&nbsp;&nbsp;&nbsp;this.addItem(itemObject = person2,itemString = person2.name!!)
               }
 
               dialog.show()
@@ -393,12 +391,12 @@
                 // PocketDialog.Type.DIALOG_LOADER
 
                 var dialog = PocketDialog(context = context,type = PocketDialog.Type.DIALOG_WARNING,isFullScreen = false).apply {
-                &nbsp;&nbsp;&nbsp;&nbsp;// okAction (customized ok button)
-                &nbsp;&nbsp;&nbsp;&nbsp;// cancelAction (customized cance button)
+                &nbsp;&nbsp;&nbsp;&nbsp;// okAction (customize ok button)
+                &nbsp;&nbsp;&nbsp;&nbsp;// cancelAction (customize cancel button)
                 &nbsp;&nbsp;&nbsp;&nbsp;// title (customized title textview)
-                &nbsp;&nbsp;&nbsp;&nbsp;// description (customized description textview)
-                &nbsp;&nbsp;&nbsp;&nbsp;// view (customized dialog view)
-                &nbsp;&nbsp;&nbsp;&nbsp;// lottie (customized lottie animation)
+                &nbsp;&nbsp;&nbsp;&nbsp;// description (customize description textview)
+                &nbsp;&nbsp;&nbsp;&nbsp;// view (customize dialog view)
+                &nbsp;&nbsp;&nbsp;&nbsp;// lottie (customize lottie animation)
               }
 
               dialog.show()
