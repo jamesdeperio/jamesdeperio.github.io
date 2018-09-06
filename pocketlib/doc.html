@@ -52,7 +52,7 @@
                 }
               //add dependency
               dependencies {
-                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:PocketLib:v2.0.2'
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:PocketLib:v2.0.3'
               }
               </code>
             </pre>
@@ -334,6 +334,10 @@
               <th>Description</th>
             </tr>
             <tr>
+              <td>setButtonAsSpinner(?)</td>
+              <td>Assign a button to spinner dialog.</td>
+            </tr>
+            <tr>
               <td>setListener(?)</td>
               <td>Assign item selected listener.</td>
             </tr>
@@ -357,11 +361,12 @@
                 data class Person (var id:Int=0,  var name:String? = null, var address:String? = null )
 
                 var dialog= PocketSpinnerDialog<Person>(context = context,isFullScreen = false).apply {
-                &nbsp;&nbsp;&nbsp;&nbsp;this.listener= object :PocketSpinnerDialog.Listener<Person> {
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;override fun onItemSelected(selectedObject: Person, selectedItem: String, selectedIndex: Int) {
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//display selected item to textview or button
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+                &nbsp;&nbsp;&nbsp;&nbsp;this.setButtonAsSpinner(BUTTON)
+                &nbsp;&nbsp;&nbsp;&nbsp;//you can override the default function of setOnItemSelectedListener
+                &nbsp;&nbsp;&nbsp;&nbsp;this.setOnItemSelectedListener { selectedObject, selectedItem, selectedIndex, spinner ->
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BUTTON.text=selectedItem
                 &nbsp;&nbsp;&nbsp;&nbsp;}
+
                 &nbsp;&nbsp;&nbsp;&nbsp;val person1 = Person(id = 1,name = "ABC",address = null)
                 &nbsp;&nbsp;&nbsp;&nbsp;this.addItem(itemObject = person1,itemString = person1.name!!)
                 &nbsp;&nbsp;&nbsp;&nbsp;val person2 = Person(id = 1,name = "XYZ",address = null)
@@ -391,12 +396,13 @@
                 // PocketDialog.Type.DIALOG_LOADER
 
                 var dialog = PocketDialog(context = context,type = PocketDialog.Type.DIALOG_WARNING,isFullScreen = false).apply {
-                &nbsp;&nbsp;&nbsp;&nbsp;// okAction (customize ok button)
-                &nbsp;&nbsp;&nbsp;&nbsp;// cancelAction (customize cancel button)
-                &nbsp;&nbsp;&nbsp;&nbsp;// title (customized title textview)
-                &nbsp;&nbsp;&nbsp;&nbsp;// description (customize description textview)
-                &nbsp;&nbsp;&nbsp;&nbsp;// view (customize dialog view)
-                &nbsp;&nbsp;&nbsp;&nbsp;// lottie (customize lottie animation)
+                &nbsp;&nbsp;&nbsp;&nbsp;// okAction (customize the ok button)
+                &nbsp;&nbsp;&nbsp;&nbsp;// cancelAction (customize the cancel button)
+                &nbsp;&nbsp;&nbsp;&nbsp;// title (customized the title textview)
+                &nbsp;&nbsp;&nbsp;&nbsp;// description (customize the description textview)
+                &nbsp;&nbsp;&nbsp;&nbsp;// view (customize the dialog view)
+                &nbsp;&nbsp;&nbsp;&nbsp;// lottie (customize the lottie animation)
+                  &nbsp;&nbsp;&nbsp;&nbsp;// dialog (customize the dialog)
               }
 
               dialog.show()
