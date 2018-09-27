@@ -34,6 +34,7 @@
         <li class="js-btn">PocketSpinnerDialog</li>
         <li class="js-btn">PocketDialog</li>
         <li class="js-btn">More CustomView</li>
+        <li class="js-btn">EventPublisher</li>
       </ul>
     </aside>
     <article class="doc__content">
@@ -52,7 +53,14 @@
                 }
               //add dependency
               dependencies {
-                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:PocketLib:v2.0.3'
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:PocketLib:v2.1.0'<br/><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;//To use BaseSwipeFragment include <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'me.yokeyword:swipebackfragment:0.4.0'<br/><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;//To use EventPublisher include <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'io.reactivex.rxjava2:rxjava:x.x.x'<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'io.reactivex.rxjava2:rxandroid:x.x.x'<br/><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;//To use PocketDialog include <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.airbnb.android:lottie:2.7.0' <br/>
               }
               </code>
             </pre>

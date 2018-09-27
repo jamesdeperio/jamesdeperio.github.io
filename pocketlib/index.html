@@ -43,8 +43,15 @@
                 }<br/>
               //add dependency<br/>
               dependencies {<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:PocketLib:v2.0.3'<br/>
-              }
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:PocketLib:v2.1.0'<br/><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;//To use BaseSwipeFragment include <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'me.yokeyword:swipebackfragment:0.4.0'<br/><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;//To use EventPublisher include <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'io.reactivex.rxjava2:rxjava:x.x.x'<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'io.reactivex.rxjava2:rxandroid:x.x.x'<br/><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;//To use PocketDialog include <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.airbnb.android:lottie:2.7.0' <br/>
+            }
             </code>
 
           </pre>
@@ -85,6 +92,29 @@
     <div class="changelog">
       <div class="wrapper">
         <h3 class="section__title">Changelog</h3>
+        <div class="changelog__item">
+          <div class="changelog__meta">
+            <h4 class="changelog__title">v2.1.0</h4>
+            <small class="changelog__date">9/27/2018</small>
+          </div>
+          <div class="changelog__detail">
+            <ul>
+              <li>UPDATED: kotlin dependency to v1.2.71</li>
+              <li>UPDATED: gradle dependency to v3.2.0</li>
+      <li>UPDATED: lottie dependency to v2.7.0</li>
+      <li>UPDATED: gradle dependency to v3.2.0</li>
+      <li>UPDATED: android support dependency to v28.0.0</li>
+      <li>ADDED: rxjava dependency v2.2.2</li>
+      <li>ADDED: rxandroid dependency v2.1.0</li>
+      <li>ADDED: EventPublisher class use to listen in a channel.</li>
+      <li>CHANGES:</li>
+      <li>To use BaseSwipeFragment include 'me.yokeyword:swipebackfragment:0.4.0' as dependency</li>
+      <li>To use EventPublisher include rxjava & rxandroid as dependency</li>
+      <li>To use PocketDialog include 'com.airbnb.android:lottie:2.7.0' as dependency</li>
+
+            </ul>
+          </div>
+        </div>
 
         <div class="changelog__item">
           <div class="changelog__meta">
