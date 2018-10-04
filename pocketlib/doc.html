@@ -461,6 +461,57 @@
 
           <hr />
         </section>
+        <section class="js-section">
+          <h3 class="section__title">EventPublisher<h3>
+            <p>A reactive event bus that can create and listen multiple channel.</p>
+          <table id="customers">
+            <tr>
+              <th>Method</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>subscribeReceiver(channel: String, eventReceiver: (event:Any) -> Unit)</td>
+              <td>Create channelID and set callback for receiver.</td>
+            </tr>
+            <tr>
+              <td>sendEvent(channel:String,event: Any)</td>
+              <td>Send event based on channelID</td>
+            </tr>
+            <tr>
+              <td>unSubscribeReceiver(channel:String,receiverID:Int)</td>
+              <td>Dispose receiver based on channelID.</td>
+            </tr>
+            <tr>
+              <td>disposeChannel(channel:String)</td>
+              <td>Dispose channel.</td>
+            </tr>
+            <tr>
+              <td>disposeAllChannel()</td>
+              <td>Dispose all channel.</td>
+            </tr>
+            <tr>
+              <td>getActiveReceiverSize(channel: String)</td>
+              <td>Get the count of receiver based on channelID.</td>
+            </tr>
+            <tr>
+              <td>getActiveReceiverID(channel: String)</td>
+              <td>Get the list of active receiverID based on channelID.</td>
+            </tr>
+            <tr>
+              <td>getActiveChannelSize()</td>
+              <td>Get the count of channels.</td>
+            </tr>
+            <tr>
+              <td>getActiveChannel()</td>
+              <td>Get the list of channel.</td>
+            </tr>
+
+
+          </table>
+        
+          <hr />
+        </section>
+
       </article>
     </div>
 
