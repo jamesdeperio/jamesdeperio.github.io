@@ -508,7 +508,17 @@
 
 
           </table>
-        
+          <p>Declaration:</p>
+          <div class="code__block code__block--notabs">
+            <pre class="code code--block">
+              <code style="font-size:12px">
+                val eventPublisher = EventPublisher(Bus.PublishSubject)
+                val eventPublisher = EventPublisher(Bus.AsyncSubject)
+                val eventPublisher = EventPublisher(Bus.ReplaySubject)
+                val eventPublisher = EventPublisher(Bus.BehaviorSubject)
+                val eventPublisher = EventPublisher(Bus.UnicastSubject)
+              </code>
+            </pre>
           <hr />
         </section>
 
