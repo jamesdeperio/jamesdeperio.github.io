@@ -55,7 +55,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.squareup.retrofit2:adapter-rxjava2:x.x.x'<br/><br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;//or add Kotlin coroutine's adapter<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:x.x.x'<br/><br/>
-                
+
                 &nbsp;&nbsp;&nbsp;&nbsp;//then add your converter factory library<br/>
               }
               </code>
@@ -168,7 +168,7 @@
               <td>Override to use your own custom converter library.</td>
             </tr>
             <tr>
-              <td>CallAdapter.Factory()</td>
+              <td>initCallAdapterFactory()</td>
               <td>CallAdapter.Factory</td>
               <td>Override to use rx java latest library for call adapter.</td>
             </tr>
@@ -201,7 +201,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;override fun initReadTimeOut(): Long = 60
                 &nbsp;&nbsp;&nbsp;&nbsp;override fun initWriteTimeOut(): Long = 60
                 &nbsp;&nbsp;&nbsp;&nbsp;override fun initConverterFactory(): Converter.Factory = multipleConverter
-                &nbsp;&nbsp;&nbsp;&nbsp;override fun initRxAdapterFactory(): CallAdapter.Factory = RxJava2CallAdapterFactory.create()
+                &nbsp;&nbsp;&nbsp;&nbsp;override fun initCallAdapterFactory(): CallAdapter.Factory = RxJava2CallAdapterFactory.create()
                 &nbsp;&nbsp;&nbsp;&nbsp;override fun isPrintLogEnabled(): Boolean = true
                 &nbsp;&nbsp;&nbsp;&nbsp;override fun OkHttpClient.Builder.interceptorConfiguration(builder: OkHttpClient.Builder): OkHttpClient.Builder
                 &nbsp;&nbsp;&nbsp;&nbsp;= builder.addInterceptor(INTERCEPTOR)

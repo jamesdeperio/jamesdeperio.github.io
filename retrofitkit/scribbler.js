@@ -36,7 +36,7 @@ if (document.getElementsByClassName('demo').length > 0) {
 
                   return multipleConverter
                 }
-                override fun initRxAdapterFactory(): CallAdapter.Factory = RxJava2CallAdapterFactory.create()
+                override fun initCallAdapterFactory(): CallAdapter.Factory = RxJava2CallAdapterFactory.create()
                 override fun isPrintLogEnabled(): Boolean = true
                 override fun OkHttpClient.Builder.interceptorConfiguration(builder: OkHttpClient.Builder): OkHttpClient.Builder
                 = builder.addInterceptor(INTERCEPTOR)
