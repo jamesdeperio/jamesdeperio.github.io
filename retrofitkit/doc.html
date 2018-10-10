@@ -46,13 +46,18 @@
                 }
               //add dependency
               dependencies {
-                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:RetrofitKit:v1.0.2'<br/><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:RetrofitKit:v1.0.4'<br/><br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;//required dependencies<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.squareup.retrofit2:retrofit:2.4.0'<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'<br/><br/>
+
                 &nbsp;&nbsp;&nbsp;&nbsp;//add rxjava adapter<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.squareup.retrofit2:adapter-rxjava2:x.x.x'<br/><br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;//then add your converter factory library<br/>        }
+                &nbsp;&nbsp;&nbsp;&nbsp;//or add Kotlin coroutine's adapter<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:x.x.x'<br/><br/>
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;//then add your converter factory library<br/>
+              }
               </code>
             </pre>
           </div>

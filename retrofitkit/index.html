@@ -48,12 +48,15 @@
                 }<br/>
               //add dependency<br/>
               dependencies {<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:RetrofitKit:v1.0.2'<br/><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:RetrofitKit:v1.0.4'<br/><br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;//required dependencies<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.squareup.retrofit2:retrofit:2.4.0'<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'<br/><br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;//add rxjava adapter<br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.squareup.retrofit2:adapter-rxjava2:x.x.x'<br/><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;//or add Kotlin coroutine's adapter<br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:x.x.x'<br/><br/>
+
                 &nbsp;&nbsp;&nbsp;&nbsp;//then add your converter factory library<br/>
               }
             </code>
@@ -84,6 +87,17 @@
     <div class="changelog">
       <div class="wrapper">
         <h3 class="section__title">Changelog</h3>
+        <div class="changelog__item">
+          <div class="changelog__meta">
+            <h4 class="changelog__title">v1.0.4</h4>
+            <small class="changelog__date">10/10/2018</small>
+          </div>
+          <div class="changelog__detail">
+            <ul>
+             <li>MERGED: PR of @marjorietiozon for synchronization of retrofit instance</li>
+            </ul>
+          </div>
+        </div>
         <div class="changelog__item">
           <div class="changelog__meta">
             <h4 class="changelog__title">v1.0.3</h4>
