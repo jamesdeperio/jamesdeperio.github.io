@@ -53,7 +53,7 @@
                 }
               //add dependency
               dependencies {
-                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:PocketLib:v2.1.1'<br/><br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;implementation 'com.github.jamesdeperio:PocketLib:2.2.0'<br/><br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;//To use BaseSwipeFragment include <br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;implementation 'me.yokeyword:swipebackfragment:0.4.0'<br/><br/>
                 &nbsp;&nbsp;&nbsp;&nbsp;//To use EventPublisher include <br/>
@@ -342,8 +342,8 @@
               <th>Description</th>
             </tr>
             <tr>
-              <td>setButtonAsSpinner(?)</td>
-              <td>Assign a button to spinner dialog.</td>
+              <td>setSpinnerView(?)</td>
+              <td>Assign a Button/TextInputEditText/PocketSpinner to spinner dialog.</td>
             </tr>
             <tr>
               <td>setListener(?)</td>
@@ -369,7 +369,7 @@
                 data class Person (var id:Int=0,  var name:String? = null, var address:String? = null )
 
                 var dialog= PocketSpinnerDialog<Person>(context = context,isFullScreen = false).apply {
-                &nbsp;&nbsp;&nbsp;&nbsp;this.setButtonAsSpinner(BUTTON)
+                &nbsp;&nbsp;&nbsp;&nbsp;this.setSpinnerView(BUTTON)
                 &nbsp;&nbsp;&nbsp;&nbsp;//you can override the default function of setOnItemSelectedListener
                 &nbsp;&nbsp;&nbsp;&nbsp;this.setOnItemSelectedListener { selectedObject, selectedItem, selectedIndex, spinner ->
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BUTTON.text=selectedItem
